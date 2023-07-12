@@ -28,17 +28,17 @@ btnGenerate.addEventListener("click", function () {
 
   //------------DIVS
   //Cycle that generates the same div x times
-  let divs = [];
+  let divs = [];//Divs array
   let points = [];//Points array
   const bombe = bombz(x);//Declaring this const, It will return the array containing the bombs
+
+  //Cycle to stamp the divs
   for (let i = 0; i < x; i++) {
     let div = document.createElement("div"); //Virtual Div
     boxContainer.append(div);//append the div into the container
     div.classList.add("div-style", "d-flex", "justify-content-center", "align-items-center");//Add the class at each div
-    div.innerHTML = i + 1; //Print the number inside the div
+    //div.innerHTML = i + 1; //Print the number inside the div
     div.style.flexBasis = `calc(100% / ${square})`;
-
-
     //addEventListner to make the div become blue on click + print in console of the div number
     div.addEventListener("click", function () {
       //Check if the div has already been clicked 
