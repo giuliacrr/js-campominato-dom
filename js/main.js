@@ -29,6 +29,7 @@ btnGenerate.addEventListener("click", function () {
   //------------DIVS
   //Cycle that generates the same div x times
   let divs = [];
+  const bombe = bombz(x);//Declaring this const, It will return the array containing the bombs
   for (let i = 0; i < x; i++) {
     let div = document.createElement("div"); //Virtual Div
     boxContainer.append(div);//append the div into the container
@@ -39,6 +40,13 @@ btnGenerate.addEventListener("click", function () {
     div.addEventListener("click", function () {
       div.classList.toggle("bg-primary");
       console.log("Div number" + " " + (i + 1));
+      //Red cell -bomb
+      if (bombe.indexOf(i + 1) >= 0) {
+        div.classList.toggle("bg-danger");
+        alert("Boom boom. You lost.")
+
+      }
+      //
     })
     //Push the divs in the divs array 
     divs.push(i + 1);
@@ -46,8 +54,7 @@ btnGenerate.addEventListener("click", function () {
   console.log(divs);
 
   //------------BOMBS
-  bombz(x);
-  const bombz = bombz(x);//Declaring this const, It will return the array containing the bombs
+
 })
 
 
