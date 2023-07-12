@@ -29,6 +29,7 @@ btnGenerate.addEventListener("click", function () {
   //------------DIVS
   //Cycle that generates the same div x times
   let divs = [];
+  let points = [];//Points array
   const bombe = bombz(x);//Declaring this const, It will return the array containing the bombs
   for (let i = 0; i < x; i++) {
     let div = document.createElement("div"); //Virtual Div
@@ -38,14 +39,23 @@ btnGenerate.addEventListener("click", function () {
     div.style.flexBasis = `calc(100% / ${square})`;
     //addEventListner to make the div become blue on click + print in console of the div number
     div.addEventListener("click", function () {
-      div.classList.toggle("bg-primary");
+      //Check if the div has already been clicked 
+      if (div.dataset.click === "clicked") {
+        return;
+      }
+      //addEventListner click div
+      div.classList.add("bg-primary");
       console.log("Div number" + " " + (i + 1));
+      div.dataset.click = "clicked";
       //Red cell -bomb
       if (bombe.indexOf(i + 1) >= 0) {
-        div.classList.toggle("bg-danger");
-        alert("Boom boom. You lost.")
-
+        div.classList.add("bg-danger");
+        alert("Boom boom. You lost. Your score:" + " " + points.length);
+        console.log("You lost");
+        return
       }
+      points.push(1);
+      console.log("Your score is:" + " " + points.length)
       //
     })
     //Push the divs in the divs array 
