@@ -14,6 +14,11 @@ const quantity = document.getElementById("select-quantity")
 btnGenerate.addEventListener("click", function () {
   boxContainer.innerHTML = "";
   boxContainer.style.zIndex = 1;
+  document.getElementById("your-score-is").innerHTML = "Your current score is:";
+  document.getElementById("score").innerHTML = 0;
+  winOrLose.innerHTML = "";
+  winOrLose.innerHTML = "";
+  plsReload.innerHTML = "";
   //-------------QUANTITY OF DIVS
   //Divs quantity
   const quantityValue = parseInt(quantity.value) // 1 = 49, 2 = 81, 3 = 100
@@ -67,6 +72,7 @@ btnGenerate.addEventListener("click", function () {
       //Each cell clicked, adds a point ( if it's not a bomb) and prints in console the
       points.push(1);
       console.log("Your score is:" + " " + points.length)
+      document.getElementById("score").innerHTML = parseInt(points.length);
       //VICTORY CLICKING EVERY BLUE CELL
       if (points.length === (x - bombe.length)) {
         alert("You won the game! 🎉✨ Total score possible:" + " " + (points.length - bombe.length));
