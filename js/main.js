@@ -1,3 +1,4 @@
+//Sorry in advance for the mess. 
 "use strict"
 //Div container
 const boxContainer = document.getElementById("divs-container");
@@ -36,8 +37,8 @@ btnGenerate.addEventListener("click", function () {
   for (let i = 0; i < x; i++) {
     let div = document.createElement("div"); //Virtual Div
     boxContainer.append(div);//append the div into the container
-    div.classList.add("div-style", "d-flex", "justify-content-center", "align-items-center");//Add the class at each div
-    //div.innerHTML = i + 1; //Print the number inside the div
+    div.classList.add("div-style");//Add the class at each div
+    div.innerHTML = i + 1; //Print the number inside the div
     div.style.flexBasis = `calc(100% / ${square})`;
     //addEventListner to make the div become blue on click + print in console of the div number
     div.addEventListener("click", function () {
@@ -51,7 +52,7 @@ btnGenerate.addEventListener("click", function () {
       //Red cell -bomb + loss message
       if (bombe.indexOf(i + 1) >= 0) {
         div.classList.add("bg-danger");
-        alert("Boom boom. You lost. Your score:" + " " + points.length);
+        alert("Boom boom. 🧨🔥 You lost. Your score:" + " " + points.length);
         console.log("You lost");
         return //The return makes the if go back to the beginning, not adding the score points if we click a bomb
       }
@@ -60,7 +61,7 @@ btnGenerate.addEventListener("click", function () {
       console.log("Your score is:" + " " + points.length)
       //VICTORY CLICKING EVERY BLUE CELL
       if (points.length === (x - bombe.length)) {
-        alert("You won the game! Total score possible:" + " " + (points.length - bombe.length));
+        alert("You won the game! 🎉✨ Total score possible:" + " " + (points.length - bombe.length));
       }
       console.log(bombe.length)
     })
