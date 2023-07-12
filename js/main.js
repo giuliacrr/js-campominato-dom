@@ -34,14 +34,11 @@ btnGenerate.addEventListener("click", function () {
     square = Math.sqrt(100);
     x = 100;
   }
-
-
   //------------DIVS
   //Cycle that generates the same div x times
   let divs = [];//Divs array
   let points = [];//Points array
   const bombe = bombz(x);//Declaring this const, It will return the array containing the bombs
-
   //Cycle to stamp the divs
   for (let i = 0; i < x; i++) {
     let div = document.createElement("div"); //Virtual Div
@@ -49,6 +46,10 @@ btnGenerate.addEventListener("click", function () {
     div.classList.add("div-style");//Add the class at each div
     div.innerHTML = i + 1; //Print the number inside the div
     div.style.flexBasis = `calc(100% / ${square})`;
+    //Attributo data-red="bomba" ai div 
+    if (bombe.indexOf(i + 1) >= 0) {
+      div.dataset.red = "bomba";
+    }
     //addEventListner to make the div become blue on click + print in console of the div number
     div.addEventListener("click", function () {
       //Check if the div has already been clicked 
@@ -67,6 +68,12 @@ btnGenerate.addEventListener("click", function () {
         winOrLose.classList.add("text-danger", "text-center");
         plsReload.innerHTML = "Press on Generate again to re-start the game.";
         boxContainer.style.zIndex = -1;
+        //To make all the bombs red   BACKTICK alt+96 tastierino
+        //Prende il data-red="bomba" dalla riga 50
+        let dataBomb = document.querySelectorAll(`[data-red="bomba"]`);
+        for (let j = 0; j < bombe.length; j++) {
+          dataBomb[j].classList.add("bg-danger");
+        }
         return //The return makes the if go back to the beginning, not adding the score points if we click a bomb
       }
       //Each cell clicked, adds a point ( if it's not a bomb) and prints in console the
