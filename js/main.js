@@ -37,34 +37,36 @@ btnGenerate.addEventListener("click", function () {
     div.classList.add("div-style", "d-flex", "justify-content-center", "align-items-center");//Add the class at each div
     div.innerHTML = i + 1; //Print the number inside the div
     div.style.flexBasis = `calc(100% / ${square})`;
+
+
     //addEventListner to make the div become blue on click + print in console of the div number
     div.addEventListener("click", function () {
       //Check if the div has already been clicked 
       if (div.dataset.click === "clicked") {
         return;
       }
-      //addEventListner click div
       div.classList.add("bg-primary");
       console.log("Div number" + " " + (i + 1));
       div.dataset.click = "clicked";
-      //Red cell -bomb
+      //Red cell -bomb + loss message
       if (bombe.indexOf(i + 1) >= 0) {
         div.classList.add("bg-danger");
         alert("Boom boom. You lost. Your score:" + " " + points.length);
         console.log("You lost");
-        return
+        return //The return makes the if go back to the beginning, not adding the score points if we click a bomb
       }
+      //Each cell clicked, adds a point ( if it's not a bomb) and prints in console the
       points.push(1);
       console.log("Your score is:" + " " + points.length)
-      //
+      //VICTORY CLICKING EVERY BLUE CELL
+      if (points.length === (x - bombe.length)) {
+        alert("You won the game! Total score possible:" + " " + (points.length - bombe.length));
+      }
+      console.log(bombe.length)
     })
     //Push the divs in the divs array 
     divs.push(i + 1);
   }
-  console.log(divs);
-
-  //------------BOMBS
-
 })
 
 
@@ -75,11 +77,11 @@ function bombz(b) {
     const randomBomb = Math.floor(Math.random() * b) + 1;
     if (bombs.indexOf(randomBomb) === -1) {
       bombs.push(randomBomb);
-      console.log(randomBomb);
     } else {
       y--
     }
   }
+  console.log("Those are the bombs:");
   console.log(bombs);
   return bombs;
 }
