@@ -2,6 +2,9 @@
 "use strict"
 //Div container
 const boxContainer = document.getElementById("divs-container");
+//win or lose title
+const winOrLose = document.getElementById("win-or-lose-title");
+const plsReload = document.getElementById("pls-reload");
 //btn
 const btnGenerate = document.querySelector(".btn-gen");
 //Select quantity of divs 
@@ -10,6 +13,7 @@ const quantity = document.getElementById("select-quantity")
 
 btnGenerate.addEventListener("click", function () {
   boxContainer.innerHTML = "";
+  boxContainer.style.zIndex = 1;
   //-------------QUANTITY OF DIVS
   //Divs quantity
   const quantityValue = parseInt(quantity.value) // 1 = 49, 2 = 81, 3 = 100
@@ -54,6 +58,10 @@ btnGenerate.addEventListener("click", function () {
         div.classList.add("bg-danger");
         alert("Boom boom. 🧨🔥 You lost. Your score:" + " " + points.length);
         console.log("You lost");
+        winOrLose.innerHTML = "You Lost!";
+        winOrLose.classList.add("text-danger", "text-center");
+        plsReload.innerHTML = "Press on Generate again to re-start the game.";
+        boxContainer.style.zIndex = -1;
         return //The return makes the if go back to the beginning, not adding the score points if we click a bomb
       }
       //Each cell clicked, adds a point ( if it's not a bomb) and prints in console the
@@ -62,8 +70,11 @@ btnGenerate.addEventListener("click", function () {
       //VICTORY CLICKING EVERY BLUE CELL
       if (points.length === (x - bombe.length)) {
         alert("You won the game! 🎉✨ Total score possible:" + " " + (points.length - bombe.length));
+        boxContainer.style.zIndex = -1;
+        winOrLose.innerHTML = "You Won!";
+        winOrLose.classList.add("text-success", "text-center");
+        plsReload.innerHTML = "Press on Generate again to re-start the game.";
       }
-      console.log(bombe.length)
     })
     //Push the divs in the divs array 
     divs.push(i + 1);

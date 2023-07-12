@@ -17,7 +17,7 @@
 <body>
   <!-- Bottone -->
   <div class="text-center">
-    <h1>Press the button to generate the divs</h1>
+    <h1 class="text-white">Press the button to generate the divs!</h1>
     <select class="form-select select-width-ow mt-3 mb-3" id="select-quantity">
       <option value="1">49 divs (7x7)</option>
       <option value="2">81 divs (9x9)</option>
@@ -26,6 +26,8 @@
     <input class="btn btn-primary m-auto btn-gen" type="button" value="Generate">
   </div>
   <main>
+    <h1 id="win-or-lose-title"></h1>
+    <h5 class="text-center text-white" id="pls-reload"></h5>
     <!--Div of the divs-->
     <div id="divs-container" class="d-flex flex-wrap mt-5 text-white;">
     </div>
